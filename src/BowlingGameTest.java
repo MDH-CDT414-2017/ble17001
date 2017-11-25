@@ -4,8 +4,6 @@
  * @version 1.0 
  * @date 2016-11-24
  */
-import org.junit.Test;
-
 import junit.framework.TestCase;
 
 /** BowlingGame Score calculator test cases 
@@ -57,4 +55,45 @@ public class BowlingGameTest extends TestCase {
         BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6]");
         assertEquals(103, bowlingGame.getScore());
     }
+	
+	public void testPerfectGame() {
+        BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,10]");
+        assertEquals(300, bowlingGame.getScore());
+    }
+	
+	public void testString() {
+		 BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6]");
+		assertEquals(true,bowlingGame.verifyStringFormat(bowlingGame.game));
+		
+	}
+	
+	public void testStringWithNegativeNumbers() {
+		 BowlingGame bowlingGame = new BowlingGame("[10,0][-4,6][7,2][3,6][-4,4][5,3][3,3][4,5][8,1][2,6]");
+		assertEquals(false,bowlingGame.verifyStringFormat(bowlingGame.game));
+		
+	}
+	
+	public void testLastStrikeString() {
+		BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6][10,10]");
+		assertEquals(true,bowlingGame.verifyLastStrikeStringFormat(bowlingGame.game));
+		
+	}
+	
+	public void testLastStrikeStringWithNegativeNumbers() {
+		BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][-3,6][4,4][5,3][3,3][-4,5][8,1][2,6][10,10]");
+		assertEquals(false,bowlingGame.verifyLastStrikeStringFormat(bowlingGame.game));
+		
+	}
+	
+	public void testLastSpareString() {
+		BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6][10]");
+		assertEquals(true,bowlingGame.verifyLastSpareStringFormat(bowlingGame.game));
+		
+	}
+	
+	public void testLastSpareStringWithNegativeNumbers() {
+		BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][-3,6][4,4][5,3][3,3][4,5][-8,1][2,6][10]");
+		assertEquals(false,bowlingGame.verifyLastSpareStringFormat(bowlingGame.game));
+		
+	}
 }
