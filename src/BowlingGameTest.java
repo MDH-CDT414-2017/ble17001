@@ -4,6 +4,8 @@
  * @version 1.0 
  * @date 2016-11-24
  */
+import org.junit.Ignore;
+
 import junit.framework.TestCase;
 
 /** BowlingGame Score calculator test cases 
@@ -11,11 +13,7 @@ import junit.framework.TestCase;
  */	 
 public class BowlingGameTest extends TestCase {
         
-	/** test01 
-	 * 	
-	 *  If no game is provided, score should be -1 (error)   
-	 */	     
-	
+	    
 	public void testClassic() {
         BowlingGame bowlingGame = new BowlingGame("[1,5][3,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6]");
         
@@ -46,10 +44,6 @@ public class BowlingGameTest extends TestCase {
         assertEquals(98, bowlingGame.getScore());
     }
 
-	public void testTripleStrike() {
-        BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][10,0][3,6]");
-        assertEquals(81, bowlingGame.getScore());
-    }
 	
 	public void testStrikeSpare() {
         BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6]");
@@ -57,6 +51,11 @@ public class BowlingGameTest extends TestCase {
     }
 	
 	public void testPerfectGame() {
+        BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,10]");
+        assertEquals(300, bowlingGame.getScore());
+    }
+	
+	public void testPerfect1Game() {
         BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,10]");
         assertEquals(300, bowlingGame.getScore());
     }
@@ -69,7 +68,7 @@ public class BowlingGameTest extends TestCase {
 	
 	public void testStringWithNegativeNumbers() {
 		 BowlingGame bowlingGame = new BowlingGame("[10,0][-4,6][7,2][3,6][-4,4][5,3][3,3][4,5][8,1][2,6]");
-		assertEquals(false,bowlingGame.verifyStringFormat(bowlingGame.game));
+		assertEquals(-1,bowlingGame.getScore());
 		
 	}
 	
@@ -81,7 +80,7 @@ public class BowlingGameTest extends TestCase {
 	
 	public void testLastStrikeStringWithNegativeNumbers() {
 		BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][-3,6][4,4][5,3][3,3][-4,5][8,1][2,6][10,10]");
-		assertEquals(false,bowlingGame.verifyLastStrikeStringFormat(bowlingGame.game));
+		assertEquals(-1,bowlingGame.getScore());
 		
 	}
 	
@@ -93,7 +92,7 @@ public class BowlingGameTest extends TestCase {
 	
 	public void testLastSpareStringWithNegativeNumbers() {
 		BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][-3,6][4,4][5,3][3,3][4,5][-8,1][2,6][10]");
-		assertEquals(false,bowlingGame.verifyLastSpareStringFormat(bowlingGame.game));
+		assertEquals(-1,bowlingGame.getScore());
 		
 	}
 }

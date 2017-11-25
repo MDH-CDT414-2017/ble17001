@@ -39,17 +39,18 @@ public class BowlingGame {
 		getFrameList(this.game);
 
 		for (Frame f : this.gameFrames) {
-			
-			if (i != 11 && !verifyFrameSum(f)) {// Nese shuma eshte me e madhe se 10
+
+			if (i != 10 && !verifyFrameSum(f)) {// Nese shuma eshte me e madhe se 10
 				return -1;
 			}
 
 			int frameScore = 0;
-
 			frameScore = f.getScore1() + f.getScore2();
+			
+		
 			if (pStrike == true) {
 				frameScore = frameScore + f.getScore1();
-
+				if(i != 10) {
 				if (doubleStrike) {
 					frameScore = frameScore + f.getScore1();
 				}
@@ -59,15 +60,17 @@ public class BowlingGame {
 					doubleStrike = false;
 					frameScore = frameScore + f.getScore2();
 				}
+				}
 			} else if (pSpare) {
 				frameScore = frameScore + f.getScore1();
 			}
+		
 			score = score + frameScore;
-
 			pStrike = f.isStrike();
 			pSpare = f.isSpare();
+			i++;
+
 		}
-		i++;
 		return score;
 	}
 	
@@ -91,8 +94,8 @@ public class BowlingGame {
 		return false;
 	}
 	
-	public int getStandartScore(){
-		return 1;
+	public int getStandartScore(Frame f){
+		return f.getScore1() + f.getScore2();
 		
 	}
 	
