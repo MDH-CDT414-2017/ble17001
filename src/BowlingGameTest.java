@@ -4,8 +4,6 @@
  * @version 1.0 
  * @date 2016-11-24
  */
-import org.junit.Ignore;
-
 import junit.framework.TestCase;
 
 /** BowlingGame Score calculator test cases 
@@ -55,10 +53,6 @@ public class BowlingGameTest extends TestCase {
         assertEquals(300, bowlingGame.getScore());
     }
 	
-	public void testPerfect1Game() {
-        BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,10]");
-        assertEquals(300, bowlingGame.getScore());
-    }
 	
 	public void testString() {
 		 BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6]");
@@ -92,6 +86,24 @@ public class BowlingGameTest extends TestCase {
 	
 	public void testLastSpareStringWithNegativeNumbers() {
 		BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][-3,6][4,4][5,3][3,3][4,5][-8,1][2,6][10]");
+		assertEquals(-1,bowlingGame.getScore());
+		
+	}
+	
+	public void testWrongFrame() {
+		BowlingGame bowlingGame = new BowlingGame("[10,0][10,6][7,2][-3,6][4,4][5,3][3,3][4,5][-8,1][2,6]");
+		assertEquals(-1,bowlingGame.getScore());
+		
+	}
+	
+	public void testWrongLastStrike() {
+		BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][7,2][-3,6][4,4][5,3][3,3][4,5][-8,1][2,6][20,20]");
+		assertEquals(-1,bowlingGame.getScore());
+		
+	}
+	
+	public void testWrongLastSpare() {
+		BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][7,2][-3,6][4,4][5,3][3,3][4,5][-8,1][2,6][20]");
 		assertEquals(-1,bowlingGame.getScore());
 		
 	}
