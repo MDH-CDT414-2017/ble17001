@@ -76,7 +76,7 @@ public class BowlingGame {
 	
 	public boolean checkStrike(Frame f) {
 		if(f.getScore1() + f.getScore2() == 10) {
-			if(f.getScore1() == 0 || f.getScore2() == 0) {
+			if(f.getScore2() == 0) {
 				return true;
 			}
 		}
@@ -86,7 +86,7 @@ public class BowlingGame {
 	
 	public boolean checkSpare(Frame f) {
 		if(f.getScore1() + f.getScore2() == 10) {
-			if(f.getScore1() != 0 && f.getScore2() != 0) {
+			if(f.getScore2() != 0) {
 				return true;
 			}
 		}
