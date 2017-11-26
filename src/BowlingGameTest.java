@@ -30,6 +30,12 @@ public class BowlingGameTest extends TestCase {
         assertEquals(88, bowlingGame.getScore());
     }
 	
+	public void testSpare1() {
+        BowlingGame bowlingGame = new BowlingGame("[0,10][3,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6]");
+        
+        assertEquals(88, bowlingGame.getScore());
+    }
+	
 	public void testDoubleStrike() {
         BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6]");
         
@@ -53,24 +59,13 @@ public class BowlingGameTest extends TestCase {
         assertEquals(300, bowlingGame.getScore());
     }
 	
-	
-	public void testString() {
-		 BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6]");
-		assertEquals(true,bowlingGame.verifyStringFormat(bowlingGame.game));
-		
-	}
-	
 	public void testStringWithNegativeNumbers() {
 		 BowlingGame bowlingGame = new BowlingGame("[10,0][-4,6][7,2][3,6][-4,4][5,3][3,3][4,5][8,1][2,6]");
 		assertEquals(-1,bowlingGame.getScore());
 		
 	}
 	
-	public void testLastStrikeString() {
-		BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6][10,10]");
-		assertEquals(true,bowlingGame.verifyLastStrikeStringFormat(bowlingGame.game));
-		
-	}
+	
 	
 	public void testLastStrikeStringWithNegativeNumbers() {
 		BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][-3,6][4,4][5,3][3,3][-4,5][8,1][2,6][10,10]");
@@ -78,11 +73,6 @@ public class BowlingGameTest extends TestCase {
 		
 	}
 	
-	public void testLastSpareString() {
-		BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6][10]");
-		assertEquals(true,bowlingGame.verifyLastSpareStringFormat(bowlingGame.game));
-		
-	}
 	
 	public void testLastSpareStringWithNegativeNumbers() {
 		BowlingGame bowlingGame = new BowlingGame("[10,0][4,6][7,2][-3,6][4,4][5,3][3,3][4,5][-8,1][2,6][10]");
@@ -104,6 +94,18 @@ public class BowlingGameTest extends TestCase {
 	
 	public void testWrongLastSpare() {
 		BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][7,2][-3,6][4,4][5,3][3,3][4,5][-8,1][2,6][20]");
+		assertEquals(-1,bowlingGame.getScore());
+		
+	}
+	
+	public void testWrongFrameNumber() {
+		BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][7,2][-3,6][4,4]");
+		assertEquals(-1,bowlingGame.getScore());
+		
+	}
+	
+	public void testWrongFrameNumber1() {
+		BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][7,2][-3,6][4,4][5,3][3,3][4,5][-8,1][2,6][10,3][10]");
 		assertEquals(-1,bowlingGame.getScore());
 		
 	}
