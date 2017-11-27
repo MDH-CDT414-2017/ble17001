@@ -2,7 +2,7 @@ import java.util.*;
 
 /** BowlingGame Score calculator 
  *
- * @author CDT414 Student: 
+ * @author CDT414 Student: Bora Lamce
  * @version 1.0 
  * @date 2016-11-24
  */
@@ -28,7 +28,7 @@ public class BowlingGame {
 	 */
 	public int getScore() {
 		if (!verifyStringFormat(this.game) && !verifyLastSpareStringFormat(this.game)
-				&& !verifyLastStrikeStringFormat(this.game)) { // Verifiko qe string eshte i vlefshem
+				&& !verifyLastStrikeStringFormat(this.game)) {
 			return -1;
 		}
 		boolean pStrike = false;
@@ -40,7 +40,7 @@ public class BowlingGame {
 
 		for (Frame f : this.gameFrames) {
 
-			if (i < 10 && !verifyFrameSum(f)) {// Nese shuma eshte me e madhe se 10
+			if (i < 10 && !verifyFrameSum(f)) {
 				return -1;
 			}
 
