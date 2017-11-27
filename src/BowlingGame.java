@@ -40,31 +40,34 @@ public class BowlingGame {
 
 		for (Frame f : this.gameFrames) {
 
-			if (i != 10 && !verifyFrameSum(f)) {// Nese shuma eshte me e madhe se 10
+			if (i < 10 && !verifyFrameSum(f)) {// Nese shuma eshte me e madhe se 10
 				return -1;
 			}
 
 			int frameScore = 0;
-			frameScore = f.getScore1() + f.getScore2();
-			
-		
-			if (pStrike == true) {
-				frameScore = frameScore + f.getScore1();
-				if(i != 10) {
-				if (doubleStrike) {
+			if (i < 10) {
+				frameScore = f.getScore1() + f.getScore2();
+
+				if (pStrike == true) {
+					frameScore = frameScore + f.getScore1();
+					if (doubleStrike) {
+						frameScore = frameScore + f.getScore1();
+					}
+					if (f.isStrike() == true) {
+						doubleStrike = true;
+					} else {
+						doubleStrike = false;
+						frameScore = frameScore + f.getScore2();
+					}
+				} else if (pSpare) {
 					frameScore = frameScore + f.getScore1();
 				}
-				if (f.isStrike() == true) {
-					doubleStrike = true;
-				} else {
-					doubleStrike = false;
-					frameScore = frameScore + f.getScore2();
+			} else if (i == 10) {
+				frameScore = f.getScore1() + f.getScore2();
+				if(doubleStrike) {
+					frameScore = frameScore + f.getScore1();
 				}
-				}
-			} else if (pSpare) {
-				frameScore = frameScore + f.getScore1();
 			}
-		
 			score = score + frameScore;
 			pStrike = f.isStrike();
 			pSpare = f.isSpare();
@@ -94,10 +97,6 @@ public class BowlingGame {
 		return false;
 	}
 	
-	public int getStandartScore(Frame f){
-		return f.getScore1() + f.getScore2();
-		
-	}
 	
 	
 	public void getFrameList(String game) {
@@ -109,7 +108,9 @@ public class BowlingGame {
 			
 			Frame trueframe = new Frame();
 			trueframe.setScore1(Integer.parseInt(scores[0]));
+			if(scores.length == 2) {
 			trueframe.setScore2(Integer.parseInt(scores[1]));
+			}
 			
 			trueframe.setStrike(checkStrike(trueframe));
 			trueframe.setSpare(checkSpare(trueframe));

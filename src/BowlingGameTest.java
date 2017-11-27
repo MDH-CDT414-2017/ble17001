@@ -54,6 +54,30 @@ public class BowlingGameTest extends TestCase {
         assertEquals(103, bowlingGame.getScore());
     }
 	
+	public void testLastSpare() {
+        BowlingGame bowlingGame = new BowlingGame("[1,5][3,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,8][7]");
+        
+        assertEquals(90, bowlingGame.getScore());
+    }
+	
+	public void testLastDoubleSpare() {
+        BowlingGame bowlingGame = new BowlingGame("[1,5][3,6][7,2][3,6][4,4][5,3][3,3][4,5][8,2][2,8][7]");
+        
+        assertEquals(93, bowlingGame.getScore());
+    }
+	
+	public void testLastStrike() {
+        BowlingGame bowlingGame = new BowlingGame("[1,5][3,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][10,0][7,2]");
+        
+        assertEquals(92, bowlingGame.getScore());
+    }	
+	
+	public void testLastDoubleStrike() {
+        BowlingGame bowlingGame = new BowlingGame("[1,5][3,6][7,2][3,6][4,4][5,3][3,3][4,5][10,0][10,0][7,2]");
+        
+        assertEquals(110, bowlingGame.getScore());
+    }
+	
 	public void testPerfectGame() {
         BowlingGame bowlingGame = new BowlingGame("[10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,0][10,10]");
         assertEquals(300, bowlingGame.getScore());
