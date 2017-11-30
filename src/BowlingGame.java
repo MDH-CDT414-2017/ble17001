@@ -37,7 +37,12 @@ public class BowlingGame {
 		int score = 0;
 		int i = 0;
 		getFrameList(this.game);
-
+		
+		if (!verifyLastFrame(this.gameFrames)) {
+			return -1;
+		}
+		
+		
 		for (Frame f : this.gameFrames) {
 
 			if (i < 10 && !verifyFrameSum(f)) {
@@ -119,15 +124,24 @@ public class BowlingGame {
 	}
 	
 	public boolean verifyStringFormat(String game) {
-		return game.matches("(\\[([0-9]|10),([0-9]|10)\\]){10}");
+		if (game != null) {
+			return game.matches("(\\[([0-9]|10),([0-9]|10)\\]){10}");
+		}
+		return false;
 	}
 	
 	public boolean verifyLastStrikeStringFormat(String game) {
-		return game.matches("(\\[([0-9]|10),([0-9]|10)\\]){10}\\[([0-9]|10),([0-9]|10)\\]");
+		if (game != null) {
+			return game.matches("(\\[([0-9]|10),([0-9]|10)\\]){10}\\[([0-9]|10),([0-9]|10)\\]");
+		}
+		return false;
 	}
-	
+
 	public boolean verifyLastSpareStringFormat(String game) {
-		return game.matches("(\\[([0-9]|10),([0-9]|10)\\]){10}\\[([0-9]|10)\\]");
+		if (game != null) {
+			return game.matches("(\\[([0-9]|10),([0-9]|10)\\]){10}\\[([0-9]|10)\\]");
+		}
+		return false;
 	}
 	
 	public boolean verifyFrameSum(Frame f) {
@@ -136,6 +150,29 @@ public class BowlingGame {
 		} else {
 			return false;
 		}
+	}
+	
+	public boolean verifyLastFrame(List<Frame> gameFrames){
+		
+		if(verifyStringFormat(this.game)){
+			Frame lastFrame = gameFrames.get(9);
+			if(!lastFrame.isStrike() && !lastFrame.isSpare()){
+				return true;
+			} 
+		} else if (verifyLastSpareStringFormat(this.game)){
+			Frame beforeLastFrame = gameFrames.get(9);
+			if(beforeLastFrame.isSpare()){
+				return true;
+			} 
+		} else {
+			Frame beforeLastFrame = gameFrames.get(9);
+			if(beforeLastFrame.isStrike()){
+				return true;
+			} 
+		}
+		
+		return false;
+		
 	}
 	
 }
