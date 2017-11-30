@@ -9,7 +9,7 @@ import junit.framework.TestCase;
 /** BowlingGame Score calculator test cases 
  *  
  */	 
-public class BowlingGameTest_Ultimate extends TestCase {
+public class BowlingGameUltimateTest extends TestCase {
         
 	/** test01 
 	 * 	
