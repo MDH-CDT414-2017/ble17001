@@ -62,7 +62,7 @@ public class BowlingGame {
 				} else if (pSpare) {
 					frameScore = frameScore + f.getScore1();
 				}
-			} else if (i == 10) {
+			} else {
 				frameScore = f.getScore1() + f.getScore2();
 				if(doubleStrike) {
 					frameScore = frameScore + f.getScore1();

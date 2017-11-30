@@ -138,4 +138,12 @@ public class BowlingGameTest extends TestCase {
 		assertEquals(-1,bowlingGame.getScore());
 		
 	}
+	
+	public void testFrameWithSomeMoreThan10() {
+		BowlingGame bowlingGame = new BowlingGame("[10,1][3,6][7,2][3,6][4,4][5,3][3,3][4,5][8,1][2,6]");
+		assertEquals(-1,bowlingGame.getScore());
+	}
+	
+	
+	
 }

@@ -33,10 +33,7 @@ public class Frame {
 	public void setSpare(boolean spare) {
 		this.spare = spare;
 	}
-	@Override
-	public String toString() {
-		return "Frame [score1=" + score1 + ", score2=" + score2 + ", strike=" + strike + ", spare=" + spare + "]";
-	}
+	
 	
 	
 	
